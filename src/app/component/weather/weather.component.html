@@ -1,7 +1,26 @@
-<p>
-  weather works!
-</p>
-<button class="btn btn-primary">Button</button>
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+<div class="text">
+  <!-- <h1>WEATHER</h1> -->
+  <p></p>
+  <div class="row">
+    <div class="col-xs-10 col-sm-8 col-md-6 col-sm-offset-1 col-md-offset-2">
+      <form>
+        <div class="input-group">
+          <input type="text" class="form-control" size="20" placeholder="Enter city" required>
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-danger">Find City</button>
+          </div>
+        </div>
+      </form>
+      <br>
+      <div class="list-group-item clearfix">
+        <div class="pull-left">
+          <h4 class="list-group-item-heading">recipe.name</h4>
+          <p class="list-group-item-text">recipe.description</p>
+        </div>
+        <span class="pull-right">
+          <h3>25+ C</h3>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
