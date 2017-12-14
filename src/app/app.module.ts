@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './component/weather/weather.component';
 import { HeaderComponent } from './component/header/header.component';
+import { WeatherItemComponent } from './component/weather-item/weather-item.component';
+import { WeatherService } from './services/weather.service';
 
 
 @NgModule({
@@ -14,17 +16,16 @@ import { HeaderComponent } from './component/header/header.component';
     AppComponent,
 		WeatherComponent,
 		HeaderComponent,
+		WeatherItemComponent,
 	
   ],
   imports: [
 		BrowserModule,
 		CommonModule,
 		FormsModule
-		// AgmCoreModule.forRoot({
-    //   apiKey: 'AIzaSyAo1l-p9UldY_oSrkJMtUzKa2_QLdtTnpY'
-    // })
+	
   ],
-  providers: [],
+  providers: [WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
