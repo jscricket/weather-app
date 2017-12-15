@@ -1,7 +1,7 @@
+import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -22,7 +22,8 @@ import { WeatherService } from './services/weather.service';
   imports: [
 		BrowserModule,
 		CommonModule,
-		FormsModule
+		FormsModule,
+		HttpModule
 	
   ],
   providers: [WeatherService],

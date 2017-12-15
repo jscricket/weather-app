@@ -1,16 +1,24 @@
   <div class="row">
     <div class="col-xs-10 col-sm-8 col-md-6 col-sm-offset-1 col-md-offset-2">
-      <form>
-        <div class="input-group">
-          <input type="text" class="form-control" size="20" placeholder="Enter city" required>
+      <form (ngSubmit)="onSubmit(cityForm)" #cityForm="ngForm">
+        <!-- <div class="form-group"> -->
+					<input 
+						type="text" 
+						class="form-control" 
+						placeholder="Enter city" 
+						ngControl="city"
+						required>
           <div class="input-group-btn">
-            <button type="button" class="btn btn-primary">Find City</button>
+						<button 
+							type="submit" 
+							class="btn btn-primary">Find City
+						</button>
           </div>
-        </div>
+        <!-- </div> -->
       </form>
 			<app-weather-item 
 				*ngFor="let weatherEl of weatherColect"
-				[weather]=weatherEl	
-				></app-weather-item>
+				[weather]="weatherEl">
+			</app-weather-item>
   </div>
 </div>
