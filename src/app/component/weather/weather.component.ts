@@ -42,7 +42,6 @@ export class WeatherComponent implements OnInit {
 			data => {
 				const weatherCurrentCity = new Weather(data.name, data.weather[0].description, data.main.temp);
 				this.myCityWeather = weatherCurrentCity;
-				console.log(this.myCityWeather)
 			}
 		);
 	}
@@ -55,7 +54,5 @@ export class WeatherComponent implements OnInit {
 		}
 		navigator.geolocation.getCurrentPosition(success)
 	}
-
-
 
 }

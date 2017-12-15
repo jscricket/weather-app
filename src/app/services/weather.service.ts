@@ -3,10 +3,7 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class WeatherService {
-	cityWeatherCollection: Weather[] = [
-		new Weather('Kyiv', 'Snowy', 5),
-		new Weather('Rome', 'Sunny', 12)
-	];
+	cityWeatherCollection: Weather[] = [];
 	constructor(){
 
 	}
