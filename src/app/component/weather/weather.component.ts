@@ -12,8 +12,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class WeatherComponent implements OnInit, AfterViewInit {
 	weatherColect: Weather[];
-	// lat: number;
-	// lng: number;
+	myCityWeather: Weather;
 
 	constructor(
 		private weatherService: WeatherService,
@@ -22,9 +21,9 @@ export class WeatherComponent implements OnInit, AfterViewInit {
 
 	ngOnInit() {
 		this.weatherColect = this.weatherService.getWeather();
+		this.geoFindMe()
 	}
 	ngAfterViewInit() {
-		this.geoFindMe()
 	}
 
 	onSubmit(form: NgForm) {
@@ -41,19 +40,19 @@ export class WeatherComponent implements OnInit, AfterViewInit {
 		this.httpService.searchCurrentCityWeather(lat, lng)
 			.subscribe(
 				data => {
-					console.log(data)
+					const weatherCurrentCity = new Weather(data.name, data.weather[0].description, data.main.temp);
+					this.myCityWeather = weatherCurrentCity;
+					console.log(this.myCityWeather)
 				}
 			);
 	}
 
 	geoFindMe() {
-		function success(position) {
+		const success = (position) => {
 			const lat = position.coords.latitude;
 			const lng = position.coords.longitude;
-			console.log(lat, lng)
 			this.getCity(lat, lng)
 		}
-
 		navigator.geolocation.getCurrentPosition(success)
 	}
 

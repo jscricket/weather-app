@@ -1,26 +1,43 @@
-  <div class="row">
-    <div class="col-xs-10 col-sm-8 col-md-6 col-sm-offset-1 col-md-offset-2">
-			<!-- <app-weather-item	></app-weather-item> -->
-      <form (ngSubmit)="onSubmit(cityForm)" #cityForm="ngForm">
-        <div class="input-group">
-					<input 
-						type="text" 
-						class="form-control" 
-						placeholder="Enter city" 
-						ngModel 
-						name="city"
-						required>
-          <div class="input-group-btn">
-						<button 
-							type="submit" 
-							class="btn btn-primary">Find City
-						</button>
-          </div>
+<div class="row">
+  <div class="col-xs-10 col-sm-8 col-md-6 col-sm-offset-1 col-md-offset-2">
+    <br>
+		<div 
+			class="list-group-item clearfix" 
+			style='background-color:rgba(120, 186, 240, 0.829)'
+			*ngIf="myCityWeather">
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{myCityWeather.cityName}}</h4>
+        <p class="list-group-item-text">{{myCityWeather.description}}</p>
+      </div>
+      <span class="pull-right">
+        <h3>{{myCityWeather.temperature}}°C</h3>
+      </span>
+		</div>
+		<br>
+		<form 
+			(ngSubmit)="onSubmit(cityForm)" 
+			#cityForm="ngForm">
+      <div class="input-group">
+				<input 
+					type="text" 
+					class="form-control" 
+					placeholder="Enter city" 
+					ngModel 
+					name="city" 
+					required>
+        <div class="input-group-btn">
+					<button 
+						type="submit" 
+						class="btn btn-primary">Find City
+          </button>
         </div>
-      </form>
-			<app-weather-item 
-				*ngFor="let weatherEl of weatherColect"
-				[weather]="weatherEl">
-			</app-weather-item>
+      </div>
+    </form>
+		<app-weather-item 
+			*ngFor="let weatherEl of weatherColect; let i=index" 
+			[weather]="weatherEl" 
+			[index]="i"
+			>
+    </app-weather-item>
   </div>
 </div>

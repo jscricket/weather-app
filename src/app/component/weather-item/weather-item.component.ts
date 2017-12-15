@@ -8,6 +8,7 @@ import { Weather } from '../../shared/weather.model';
 })
 export class WeatherItemComponent implements OnInit {
 	@Input() weather: Weather;
+	@Input() index: number;
 
 
 	constructor() { }
