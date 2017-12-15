@@ -18,4 +18,8 @@ export class WeatherService {
 	addNewWeatherCity(cityWether: Weather){
 		this.cityWeatherCollection.push(cityWether);
 	}
+
+	deleteCityWeather(id: number){
+		this.cityWeatherCollection.splice(id, 1);
+	}
 }
