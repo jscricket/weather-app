@@ -1,11 +1,16 @@
 <br>
-<div class="list-group-item clearfix" style="background-color:rgb(206, 205, 235)">
+<div 
+	class="list-group-item clearfix" 
+	style="background-color:rgb(206, 205, 235)">
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{weather.cityName}}</h4>
     <p class="list-group-item-text">{{weather.description}}</p>
   </div>
   <div class="pull-right">
-    <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
+		<button 
+			type="button" 
+			class="btn btn-danger" 
+			(click)="onDeleteItemWeather()">X</button>
   </div>
   <span class="col-xs-2">
     <h3>{{weather.temperature}}°C</h3>

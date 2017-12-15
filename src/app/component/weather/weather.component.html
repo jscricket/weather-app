@@ -32,11 +32,13 @@
           </button>
         </div>
       </div>
-    </form>
+		</form>
+		<hr>
 		<app-weather-item 
-			*ngFor="let weatherEl of weatherColect; let i=index" 
+			*ngFor="let weatherEl of weatherCollect; let i=index" 
 			[weather]="weatherEl" 
 			[index]="i"
+			(click)="onDeleteItemWeather(i)"
 			>
     </app-weather-item>
   </div>

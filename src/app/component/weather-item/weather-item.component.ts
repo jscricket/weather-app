@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { Weather } from '../../shared/weather.model';
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
 	selector: 'app-weather-item',
@@ -11,14 +13,13 @@ export class WeatherItemComponent implements OnInit {
 	@Input() index: number;
 
 
-	constructor() { }
+	constructor(private weatherService: WeatherService) { }
 
 	ngOnInit() {
 	}
 
-		
-
-
-
+	onDeleteItemWeather(){
+		this.weatherService.deleteCityWeather(this.index);
+	}
 
 }
