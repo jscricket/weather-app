@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { Weather } from '../../shared/weather.model';
-import { FormControl, NgForm, FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { HttpService } from '../../services/http.service';
 
 @Component({
 	selector: 'app-weather',
@@ -10,18 +11,24 @@ import { FormControl, NgForm, FormGroup } from '@angular/forms';
 })
 export class WeatherComponent implements OnInit {
 	weatherColect: Weather[];
-	signForm: FormGroup;
 
 	constructor(
-		private weatherService: WeatherService
+		private weatherService: WeatherService,
+		private httpService: HttpService
 	) { }
 
 	ngOnInit() {
 		this.weatherColect = this.weatherService.getWeather();
 	}
 	
-	onSubmit(form: ){
-		console.log(form.value)
+	onSubmit(form: NgForm){
+		this.httpService.searchWeatherbyCityName(form.value.city)
+			.subscribe(
+				data => {
+					const weatherCity = new Weather(data.name, data.weather[0].description, data.main.temp);
+					this.weatherService.addNewWeatherCity(weatherCity);
+				}
+			);
 	}
 
 }

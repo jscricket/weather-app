@@ -1,12 +1,16 @@
   <div class="row">
     <div class="col-xs-10 col-sm-8 col-md-6 col-sm-offset-1 col-md-offset-2">
+			<app-weather-item
+			
+			></app-weather-item>
       <form (ngSubmit)="onSubmit(cityForm)" #cityForm="ngForm">
-        <!-- <div class="form-group"> -->
+        <div class="input-group">
 					<input 
 						type="text" 
 						class="form-control" 
 						placeholder="Enter city" 
-						ngControl="city"
+						ngModel 
+						name="city"
 						required>
           <div class="input-group-btn">
 						<button 
@@ -14,7 +18,7 @@
 							class="btn btn-primary">Find City
 						</button>
           </div>
-        <!-- </div> -->
+        </div>
       </form>
 			<app-weather-item 
 				*ngFor="let weatherEl of weatherColect"
