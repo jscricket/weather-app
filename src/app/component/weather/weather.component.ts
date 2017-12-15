@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, AfterViewInit } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { Weather } from '../../shared/weather.model';
 import { NgForm } from '@angular/forms';
@@ -10,10 +10,10 @@ import { Observable } from 'rxjs/Observable';
 	templateUrl: './weather.component.html',
 	styleUrls: ['./weather.component.css']
 })
-export class WeatherComponent implements OnInit {
+export class WeatherComponent implements OnInit, AfterViewInit {
 	weatherColect: Weather[];
-	lat: number;
-	lng: number;
+	// lat: number;
+	// lng: number;
 
 	constructor(
 		private weatherService: WeatherService,
@@ -22,6 +22,8 @@ export class WeatherComponent implements OnInit {
 
 	ngOnInit() {
 		this.weatherColect = this.weatherService.getWeather();
+	}
+	ngAfterViewInit() {
 		this.geoFindMe()
 	}
 
@@ -32,20 +34,27 @@ export class WeatherComponent implements OnInit {
 				const weatherCity = new Weather(data.name, data.weather[0].description, data.main.temp);
 				this.weatherService.addNewWeatherCity(weatherCity);
 			}
+		);
+	}
+
+	getCity(lat, lng) {
+		this.httpService.searchCurrentCityWeather(lat, lng)
+			.subscribe(
+				data => {
+					console.log(data)
+				}
 			);
 	}
 
+	geoFindMe() {
+		function success(position) {
+			const lat = position.coords.latitude;
+			const lng = position.coords.longitude;
+			console.log(lat, lng)
+			this.getCity(lat, lng)
+		}
 
-		
-		 geoFindMe() {		
-			 function success(position) {
-				 this.lat = position.coords.latitude;
-				 this.lng = position.coords.longitude;
-		console.log(this.lat, this.lng)
-		
-				}
-				navigator.geolocation.getCurrentPosition(success)
-			}
-			
+		navigator.geolocation.getCurrentPosition(success)
+	}
 
 }
